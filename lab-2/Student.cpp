@@ -20,6 +20,10 @@ void Student::setNumber(int number)
 	if (number > 0)
 		_Number = number;
 }
+int Student::getNumber()
+{
+	return _Number;
+}
 void Student::printInfo()
 {
 	cout << "ÔÈÎ:\t" << _Name << endl;

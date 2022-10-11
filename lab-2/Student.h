@@ -14,6 +14,7 @@ public:
 	void setDOB(string dob);
 	string getDOB();
 	void setNumber(int number);
+	int getNumber();
 	void printInfo();
 };
 

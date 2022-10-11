@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Student.h"
+#include "Group.h"
 int main()
 {
     // Êèğèëëèöà äëÿ êîíñîëè
@@ -23,7 +24,7 @@ int main()
     cout << student01.getName() << endl;
     cout << student02.getName() << endl;
     cout << student03.getName() << endl;
-
+        
     cout << endl;
     cout << "ÄÅÒÀËÜÍÀß ÈÍÔÎĞÌÀÖÈß Î ÑÒÓÄÅÍÒÀÕ:" << endl;
     
@@ -32,4 +33,18 @@ int main()
     student02.printInfo();
     cout << endl;
     student03.printInfo();
+    
+    cout << endl;
+
+    Group group01;
+    group01.setName("ÓÒÑ/á-20-1-î");
+    group01.addStudent(student01);
+    group01.addStudent(student02);
+    group01.addStudent(student03);
+    group01.printInfo();
+
+    cout << endl;
+
+    group01.removeStudent(1003);
+    group01.printInfo();
 }
