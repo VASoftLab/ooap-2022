@@ -16,13 +16,14 @@ enum GENRE
 class AudioBook
 {
 private:
+	// Атрибуты
 	int _id;		// ID
 	string _author;	// Автор
 	string _name;	// Название
 	double _rate;	// Райтинг
 	GENRE _genre;	// Жанр
 	tm _duration;	// Длительность
-
+	// Методы
 	string GenreToString(GENRE genre);
 public:
 	AudioBook();
@@ -33,4 +34,3 @@ public:
 	string getInfo();
 	tm getDuration();
 };
-

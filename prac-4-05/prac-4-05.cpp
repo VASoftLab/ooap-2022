@@ -46,6 +46,13 @@ int main()
     collectiion.push_back(*book4);
     cout << endl;
 
+    // Объекты для работы с книгами больше не нужны
+    // Освобождаем память
+    delete book1;
+    delete book2;
+    delete book3;
+    delete book4;    
+
     cout << "Создаем экземпляр класса BookCollection bookCol1" << endl;
     BookCollection* bookCol1 = new BookCollection(1, "The Best 2022", collectiion);
     cout << endl;
@@ -60,18 +67,13 @@ int main()
     cout << "Добавляем book5 в существующую коллекцию" << endl;
     bookCol1->AddBook(*book5);
     bookCol1->PrintInfo();
-
+    delete book5;
 
     BookCollection* bookCol2 = new BookCollection(*bookCol1);
     bookCol2->setName("Лучшие книги 2022");
-    bookCol2->PrintInfo();
-
-    delete book1;
-    delete book2;
-    delete book3;
-    delete book4;
-    delete book5;
-
+    bookCol2->PrintInfo();   
+    
+    // Удаляем объект-образец
     delete bookCol1;
 
     cout << endl;

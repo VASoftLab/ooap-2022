@@ -8,9 +8,6 @@
 #include <vector>
 #include <chrono>
 #include <ctime>
-#include <iomanip>
-#include <sstream>
-#include <array> 
 using namespace std;
 class BookCollection
 {
@@ -31,4 +28,3 @@ public:
 	void setName(string name);
 	void PrintInfo();
 };
-
