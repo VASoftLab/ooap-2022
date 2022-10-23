@@ -1,6 +1,7 @@
 #pragma once
 // AudioBook.h
 #include <string>
+#include <iostream>
 #include <sstream>
 using namespace std;
 enum GENRE
@@ -15,6 +16,7 @@ enum GENRE
 class AudioBook
 {
 private:
+	int _id;		// ID
 	string _author;	// Автор
 	string _name;	// Название
 	double _rate;	// Райтинг
@@ -24,7 +26,9 @@ private:
 	string GenreToString(GENRE genre);
 public:
 	AudioBook();
-	AudioBook(string author, string name, double rate, GENRE genre, tm duration);
+	AudioBook(int id, string author, string name, double rate, GENRE genre, tm duration);
+	AudioBook(const AudioBook& audiobook);
+	~AudioBook();
 	string getInfo();
 	tm getDuration();
 };

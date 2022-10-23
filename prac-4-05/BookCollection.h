@@ -14,13 +14,16 @@ using namespace std;
 class BookCollection
 {
 private:
+	int _id;					// ID
 	string _name;				// Название сборника
 	vector<AudioBook> _books;	// Книги в сборнике
 
-	tm getTotalDuration();	
+	std::chrono::system_clock::time_point getTotalDuration();
 public:
 	BookCollection();
-	BookCollection(string name, vector<AudioBook> books);
+	BookCollection(int id, string name, vector<AudioBook> books);
+	BookCollection(const BookCollection& bookcollection);
+	~BookCollection();
 	void AddBook(AudioBook book);
 	void PrintInfo();
 };

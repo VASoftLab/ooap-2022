@@ -2,53 +2,71 @@
 // BookCollection.cpp
 BookCollection::BookCollection()
 {
-
+	_id = 0;
+	_books.reserve(15); // Резервируем место для вектора
+	cout << ">> Класс BookCollection -- Работа конструктора по умолчанию" << endl;
+	cout << ">> Емкость вектора: " << _books.capacity() << endl;
 }
-BookCollection::BookCollection(string name, vector<AudioBook> books)
+BookCollection::BookCollection(int id, string name, vector<AudioBook> books)
 {
+	this->_id = id;
 	this->_name = name; // Копируем имя сборника
+	_books.reserve(books.size() * 3); // Резервируем место для вектора
 	// Копируем вектор книг
 	for (AudioBook& book : books)
 		this->_books.push_back(book);
+
+	cout << ">> Класс BookCollection -- Работа конструктора с параметрами" << endl;
+	cout << ">> Емкость вектора: " << _books.capacity() << endl;
+}
+BookCollection::BookCollection(const BookCollection& bookcollection)
+{
+	this->_id = bookcollection._id;
+	this->_name = bookcollection._name; // Копируем имя сборника
+	_books.reserve(bookcollection._books.size() * 3); // Резервируем место для вектора
+	
+	// Копируем вектор книг
+	for (AudioBook book : bookcollection._books)
+		this->_books.push_back(book);
+
+	cout << ">> Класс BookCollection -- Работа конструктора копирования" << endl;
+}
+BookCollection::~BookCollection()
+{
+	cout << ">> Класс BookCollection -- Работа деструктора" << endl;
 }
 void BookCollection::AddBook(AudioBook book)
 {
 	this->_books.push_back(book);
+	cout << ">> Емкость вектора: " << _books.capacity() << endl;
 }
-tm BookCollection::getTotalDuration()
+chrono::system_clock::time_point BookCollection::getTotalDuration()
 {
-	tm total;
-	total.tm_hour = 0;
-	total.tm_min = 0;
-	total.tm_sec = 0;
-
-	std::chrono::system_clock::time_point duration_time;
+	chrono::system_clock::time_point duration_time;
 	for (AudioBook& b : _books)
 	{
-		total.tm_hour += b.getDuration().tm_hour;
-		total.tm_min += b.getDuration().tm_min;
-		total.tm_sec += b.getDuration().tm_sec;
-
 		duration_time += std::chrono::hours(b.getDuration().tm_hour);
 		duration_time += std::chrono::minutes(b.getDuration().tm_min);
 		duration_time += std::chrono::seconds(b.getDuration().tm_sec);
 	}
+	return duration_time;
+}
+void BookCollection::PrintInfo()
+{
+	cout << "############################################################" << endl;
+	cout << "Название сборника: " << _name << endl;
+	cout << "СОДЕРЖАНИЕ:" << endl;
+	for (int i = 0; i < _books.size(); i++)
+		cout << i + 1 << ". " << _books[i].getInfo() << endl;
+	chrono::system_clock::time_point duration_time = getTotalDuration();
+
 	/////////////////////////////////////////////////////////////
+	// Расчет общей длительности
 	// https://en.cppreference.com/w/cpp/chrono/system_clock
 	std::time_t time = std::chrono::system_clock::to_time_t(duration_time);
 	struct tm* tmp = gmtime(&time);
 	cout << "Общая длительность: " << tmp->tm_hour + tmp->tm_yday * 24 << " ч. " << tmp->tm_min << " мин. " << tmp->tm_sec << " сек." << endl;
 	/////////////////////////////////////////////////////////////
-	mktime(&total);
-	return total;
-}
-void BookCollection::PrintInfo()
-{
-	cout << "Название сборника: " << _name << endl;
-	cout << "Содержание:" << endl;
-	for (int i = 0; i < _books.size(); i++)
-		cout << i + 1 << ". " << _books[i].getInfo() << endl;
-	tm total = getTotalDuration();
-	cout << "Общая длительность: " << total.tm_hour << " ч. " << total.tm_min << " мин. " << total.tm_sec << " сек.";
+	cout << "############################################################" << endl;
 	cout << endl;
 }
