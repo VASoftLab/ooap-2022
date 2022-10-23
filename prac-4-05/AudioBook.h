@@ -29,6 +29,7 @@ public:
 	AudioBook(int id, string author, string name, double rate, GENRE genre, tm duration);
 	AudioBook(const AudioBook& audiobook);
 	~AudioBook();
+	string getName();
 	string getInfo();
 	tm getDuration();
 };

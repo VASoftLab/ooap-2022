@@ -10,14 +10,17 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+#include <array> 
 using namespace std;
 class BookCollection
 {
 private:
+	// Атрибуты
 	int _id;					// ID
 	string _name;				// Название сборника
 	vector<AudioBook> _books;	// Книги в сборнике
-
+	string* _p;					// Указатель на динамический массив названий
+	// Методы
 	std::chrono::system_clock::time_point getTotalDuration();
 public:
 	BookCollection();
@@ -25,6 +28,7 @@ public:
 	BookCollection(const BookCollection& bookcollection);
 	~BookCollection();
 	void AddBook(AudioBook book);
+	void setName(string name);
 	void PrintInfo();
 };
 

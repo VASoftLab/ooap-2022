@@ -47,7 +47,35 @@ int main()
     cout << endl;
 
     cout << "Создаем экземпляр класса BookCollection bookCol1" << endl;
-    BookCollection bookCol1(1, "The Best 2022", collectiion);
+    BookCollection* bookCol1 = new BookCollection(1, "The Best 2022", collectiion);
     cout << endl;
-    bookCol1.PrintInfo();
+    bookCol1->PrintInfo();
+
+    tm duration5;
+    cout << "Создаем экземпляр класса AudioBook book5" << endl;
+    duration5.tm_hour = 11; duration5.tm_min = 45; duration5.tm_sec = 52;
+    AudioBook* book5 = new AudioBook(5, "Фредрик Бакман", "Вторая жизнь Уве", 4.9, GENRE::Novel, duration5);
+    cout << endl;
+
+    cout << "Добавляем book5 в существующую коллекцию" << endl;
+    bookCol1->AddBook(*book5);
+    bookCol1->PrintInfo();
+
+
+    BookCollection* bookCol2 = new BookCollection(*bookCol1);
+    bookCol2->setName("Лучшие книги 2022");
+    bookCol2->PrintInfo();
+
+    delete book1;
+    delete book2;
+    delete book3;
+    delete book4;
+    delete book5;
+
+    delete bookCol1;
+
+    cout << endl;
+    cout << "Вызов метода после удаления объекта-образца" << endl;
+    bookCol2->PrintInfo();
+    delete bookCol2;
 }

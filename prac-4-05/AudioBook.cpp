@@ -61,6 +61,11 @@ string AudioBook::GenreToString(GENRE genre)
 		break;
 	}
 }
+string AudioBook::getName()
+{
+	return this->_name;
+}
+
 string AudioBook::getInfo()
 {
 	stringstream ss; // —оздаем поток, св€азанный со строкой
