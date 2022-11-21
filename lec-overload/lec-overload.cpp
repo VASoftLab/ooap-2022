@@ -23,4 +23,21 @@ int main()
     sunSystem.PrintInfo();
 
     cout << "Done..." << endl;
+
+    Planet* pEarth = new Planet("Земля", 5974, 12756);
+    cout << "Планета Земля:" << endl;
+    cout << pEarth->PrintInfo() << endl;
+    
+    cout << "Планета ЗемляII:" << endl;
+    Planet* pEarthII = pEarth;
+    cout << pEarthII->PrintInfo() << endl;
+
+    cout << "Удаление объекта Земля:" << endl;
+    delete pEarth;
+
+    cout << "Планета ЗемляII:" << endl;    
+    cout << pEarthII->PrintInfo() << endl;
+
+    cout << "Done..." << endl;
+    delete pEarthII;
 }
